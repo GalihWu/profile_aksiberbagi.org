@@ -94,8 +94,8 @@ const Programs = () => {
 
   return (
     <>
-      <section id="program" className="py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
+      <section id="program" className="section-home bg-gradient-tosca-2">
+        <div className="container mx-auto px-4 md:px-6 ">
           <div className="max-w-2xl mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
               Program <span className="text-tosca-500">Donasi</span>

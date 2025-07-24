@@ -45,6 +45,13 @@ var(--tosca-100) 60%),
 var(--tosca-500) 10%; 
 }
 
+.bg-gradient-tosca-2 {
+background: linear-gradient(to bottom, 
+var(--tosca-200) 10%, 
+var(--tosca-100) 60%),
+var(--tosca-500) 10%; 
+}
+
 
 .text-tosca-500 {
   color: var(--tosca-500)

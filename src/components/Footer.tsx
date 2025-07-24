@@ -5,13 +5,10 @@ const Footer = () => {
   return (
     <footer className="bg-gray text-white pt-16 pb-8">
       <div className="container-home">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div>
-                <h3 className="text-xl font-display font-bold">Al-Filaha</h3>
-                <p className="text-xs text-gray-300">Pondok Pesantren Modern</p>
-              </div>
+              <h3 className="text-xl font-display font-bold">Aksiberbagi</h3>
             </div>
             <p className="text-gray-400 mb-6">
               Membentuk generasi Qurani yang berakhlak mulia dan berwawasan
@@ -43,100 +40,6 @@ const Footer = () => {
                 <FaYoutube size={18} />
               </a>
             </div>
-          </div>
-
-          <div>
-            <h4 className="text-lg font-semibold mb-4 font-display">
-              Link Cepat
-            </h4>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#beranda"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Beranda
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#tentang"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Tentang Kami
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#program"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Program
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#galeri"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Galeri
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#kontak"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Kontak
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-lg font-semibold mb-4 font-display">Program</h4>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Madrasah Tsanawiyah
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Madrasah Aliyah
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Tahfidzul Qur'an
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Ekstrakurikuler
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Kursus Bahasa Arab
-                </a>
-              </li>
-            </ul>
           </div>
 
           <div>
