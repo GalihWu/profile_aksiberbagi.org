@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
 import { IoClose, IoMenuSharp } from 'react-icons/io5';
 import { GoHome } from 'react-icons/go';
-import { MdOutlineInsertPhoto } from 'react-icons/md';
+import {
+  MdOutlineInsertPhoto,
+  MdOutlineExpandMore,
+  MdOutlineExpandLess,
+} from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NavbarHome = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,12 +32,45 @@ const NavbarHome = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const toggleSubmenu = (menuName: string) => {
+    setActiveSubmenu(activeSubmenu === menuName ? null : menuName);
+  };
+
   const navLinks = [
-    { name: 'Beranda', href: '#beranda', icon: GoHome },
-    { name: 'Tentang Kami', href: '#tentang', icon: MdOutlineInsertPhoto },
-    { name: 'Program', href: '#program', icon: MdOutlineInsertPhoto },
-    { name: 'Artikel', href: '#artikel', icon: MdOutlineInsertPhoto },
-    { name: 'Kontak', href: '#kontak', icon: MdOutlineInsertPhoto },
+    {
+      name: 'Beranda',
+      href: '#beranda',
+      icon: GoHome,
+    },
+    {
+      name: 'Tentang Kami',
+      href: '#tentang',
+      icon: MdOutlineInsertPhoto,
+    },
+    {
+      name: 'Program',
+      href: '#program',
+      icon: MdOutlineInsertPhoto,
+      submenu: [
+        { name: 'Program Unggulan', href: '#program-unggulan' },
+        { name: 'Program Rutin', href: '#program-rutin' },
+      ],
+    },
+    {
+      name: 'Artikel',
+      href: '#artikel',
+      icon: MdOutlineInsertPhoto,
+      submenu: [
+        { name: 'Berita', href: '#berita' },
+        { name: 'Kegiatan', href: '#kegiatan' },
+        { name: 'Pengumuman', href: '#pengumuman' },
+      ],
+    },
+    {
+      name: 'Kontak',
+      href: '#kontak',
+      icon: MdOutlineInsertPhoto,
+    },
   ];
 
   // Animation variants
@@ -81,51 +119,121 @@ const NavbarHome = () => {
     }),
   };
 
+  const submenuVariants = {
+    hidden: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.2,
+        ease: 'easeInOut',
+      },
+    },
+    visible: {
+      opacity: 1,
+      height: 'auto',
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
+  const submenuItemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.05,
+        duration: 0.2,
+      },
+    }),
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 z-10 bg-white transition-all duration-300 ease-in w-full
+      className={`fixed top-0 left-0 z-50 transition-all duration-300 ease-in w-full
         ${
           isScrolled
-            ? 'bg-white/80 backdrop-blur-md shadow-md'
-            : 'bg-transparent'
+            ? 'bg-[#19B697]/70 backdrop-blur-md shadow-md '
+            : 'bg-tosca-500'
         }
       `}
     >
       <div className="container mx-auto py-2 px-4 md:px-6 w-full">
         <div className="flex justify-between">
           <div
-            className="h-[45px] w-auto cursor-pointer"
+            className="h-[32px] md:h-[45px] w-auto cursor-pointer"
             onClick={() => navigate('/')}
           >
             <img
-              src="/assets/image/alfilaha.webp"
+              src="/assets/image/akber-new-putih.webp"
               alt="logo"
               className="h-full w-auto object-cover"
             />
           </div>
 
           {/* Desktop navigation */}
-          <nav className="hidden md:flex space-x-6 items-center">
+          <nav className="hidden md:flex space-x-3 items-center relative">
             {navLinks.map((link, i) => (
-              <motion.a
+              <motion.div
                 key={link.name}
-                href={link.href}
-                className="hover:text-[#61876b] transition-color duration-200 font-medium"
+                className="relative"
                 variants={navItemVariants}
                 custom={i}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.95 }}
+                onMouseEnter={() => link.submenu && setActiveSubmenu(link.name)}
+                onMouseLeave={() => link.submenu && setActiveSubmenu(null)}
               >
-                {link.name}
-              </motion.a>
+                <motion.a
+                  href={link.href}
+                  className={`hover:bg-white rounded-xl hover:text-[#19B697] text-white transition-all duration-200 font-medium px-3 py-2 flex items-center ${
+                    link.submenu ? 'pr-1' : ''
+                  }`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {link.name}
+                  {link.submenu && (
+                    <span className="ml-1">
+                      {activeSubmenu === link.name ? (
+                        <MdOutlineExpandLess className="inline" />
+                      ) : (
+                        <MdOutlineExpandMore className="inline" />
+                      )}
+                    </span>
+                  )}
+                </motion.a>
+
+                {link.submenu && (
+                  <AnimatePresence>
+                    {activeSubmenu === link.name && (
+                      <motion.div
+                        className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg overflow-hidden"
+                        variants={submenuVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                      >
+                        <div className="py-1">
+                          {link.submenu.map((subItem, j) => (
+                            <motion.a
+                              key={subItem.name}
+                              href={subItem.href}
+                              className="block px-4 py-2 text-gray-800 hover:bg-[#19B697]/10 hover:text-[#19B697] transition-colors duration-200"
+                              variants={submenuItemVariants}
+                              custom={j}
+                              whileHover={{ x: 5 }}
+                            >
+                              {subItem.name}
+                            </motion.a>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
+              </motion.div>
             ))}
-            <motion.button
-              className="bg-[#61876b] hover:bg-[#0c442c] px-3 py-2 rounded-md text-white font-semibold cursor-pointer"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Daftar Sekarang
-            </motion.button>
           </nav>
 
           {/* Mobile menu button */}
@@ -137,9 +245,9 @@ const NavbarHome = () => {
             whileTap={{ scale: 0.9 }}
           >
             {isMobileMenuOpen ? (
-              <IoClose className="h-6 w-6 cursor-pointer" />
+              <IoClose className="h-6 w-6 cursor-pointer text-white" />
             ) : (
-              <IoMenuSharp className="h-6 w-6 cursor-pointer" />
+              <IoMenuSharp className="h-6 w-6 cursor-pointer text-white" />
             )}
           </motion.button>
         </div>
@@ -157,36 +265,68 @@ const NavbarHome = () => {
           >
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-3">
               {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  className="flex items-center space-x-2 py-2 px-4 rounded-md hover:bg-green-50 transition-colors duration-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  variants={mobileItemVariants}
-                  initial="hidden"
-                  animate="visible"
-                  custom={i}
-                  whileHover={{ x: 5 }}
-                >
-                  <link.icon className="h-5 w-5 text-pesantren-600" />
-                  <span>{link.name}</span>
-                </motion.a>
+                <div key={link.name}>
+                  <motion.div
+                    className="flex items-center justify-between py-2 px-4 rounded-md hover:bg-green-50 transition-colors duration-200"
+                    variants={mobileItemVariants}
+                    initial="hidden"
+                    animate="visible"
+                    custom={i}
+                  >
+                    <a
+                      href={link.href}
+                      className="flex items-center space-x-2"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <link.icon className="h-5 w-5 text-[#19B697]" />
+                      <span>{link.name}</span>
+                    </a>
+                    {link.submenu && (
+                      <button
+                        onClick={() => toggleSubmenu(link.name)}
+                        className="p-1"
+                      >
+                        {activeSubmenu === link.name ? (
+                          <MdOutlineExpandLess className="h-5 w-5 text-[#19B697]" />
+                        ) : (
+                          <MdOutlineExpandMore className="h-5 w-5 text-[#19B697]" />
+                        )}
+                      </button>
+                    )}
+                  </motion.div>
+
+                  {link.submenu && (
+                    <AnimatePresence>
+                      {activeSubmenu === link.name && (
+                        <motion.div
+                          className="pl-8"
+                          variants={submenuVariants}
+                          initial="hidden"
+                          animate="visible"
+                          exit="hidden"
+                        >
+                          {link.submenu.map((subItem, j) => (
+                            <motion.a
+                              key={subItem.name}
+                              href={subItem.href}
+                              className="block py-2 px-4 text-gray-700 hover:bg-green-50 rounded-md transition-colors duration-200"
+                              variants={submenuItemVariants}
+                              custom={j}
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                setActiveSubmenu(null);
+                              }}
+                              whileHover={{ x: 5 }}
+                            >
+                              {subItem.name}
+                            </motion.a>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
               ))}
-              <motion.div
-                className="pt-2"
-                variants={mobileItemVariants}
-                initial="hidden"
-                animate="visible"
-                custom={navLinks.length}
-              >
-                <motion.button
-                  className="bg-[#61876b] w-full hover:bg-[#0c442c] px-3 py-2 rounded-md text-white font-semibold cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Daftar Sekarang
-                </motion.button>
-              </motion.div>
             </div>
           </motion.div>
         )}

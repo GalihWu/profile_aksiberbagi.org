@@ -30,7 +30,7 @@ const About = () => {
   ];
 
   return (
-    <section id="tentang" className="py-20 bg-[#7aad42]/6 relative">
+    <section id="tentang" className="py-20 bg-tosca-100 relative">
       <div className="absolute inset-0 "></div>
       <motion.div
         initial={{ opacity: 0 }}
@@ -53,7 +53,7 @@ const About = () => {
           className="mx-auto text-center max-w-2xl mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-base font-bold mb-6">
-            Tentang <span className="text-[#61876b]">Al-Filaha</span>
+            Tentang <span className="text-tosca-500">Askiberbagi</span>
           </h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

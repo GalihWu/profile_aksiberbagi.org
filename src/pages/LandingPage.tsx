@@ -1,12 +1,11 @@
-import Hero from '../components/Hero';
-import About from '../components/About';
-// import Programs from '../components/Programs';
-import Contact from '../components/Contact';
-import Articles from '../components/Articles';
-import Galery from '../components/Galery';
+import Hero from '../components/LandingPage/Hero';
 
 import { motion, useScroll } from 'framer-motion';
-import Programs2 from '../components/Programs2';
+import Programs from '../components/LandingPage/Programs';
+import Collaboration from '../components/LandingPage/Collaboration';
+import Achievements from '../components/LandingPage/Achievements';
+import About from '../components/LandingPage/About';
+import Service from '../components/LandingPage/Service';
 
 const LandingPage = () => {
   const { scrollYProgress } = useScroll();
@@ -28,12 +27,14 @@ const LandingPage = () => {
       ></motion.div>
       <div className="min-h-screen">
         <Hero />
+        <Achievements />
+        <Collaboration />
         <About />
-        {/* <Programs /> */}
-        <Programs2 />
-        <Articles />
-        <Galery />
-        <Contact />
+        <Service />
+        <Programs />
+        {/* <Articles /> */}
+        {/* <Galery /> */}
+        {/* <Contact /> */}
       </div>
     </>
   );

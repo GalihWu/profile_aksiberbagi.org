@@ -41,11 +41,11 @@ const Articles = () => {
 
   return (
     <section id="artikel" className="py-20 bg-[#7aad42]/4 relative">
-      <div className="container mx-auto px-4 md:px-6 relative">
+      <div className="container-home">
         {/* Top */}
 
         <div className="mx-auto text-center max-w-2xl mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="title-section">
             Berita <span className="text-[#61876b]">Terkini </span>
           </h2>
           <p className="text-[#84a094]">

@@ -12,7 +12,7 @@ const Contact = () => {
     <section id="kontak" className="py-20">
       <div className="container mx-auto px-4 md:px-6">
         <div className="mx-auto text-center max-w-2xl mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="title-section">
             Hubungi <span className="text-[#61876b]/80">Kami</span>
           </h2>
           <p>

@@ -3,8 +3,8 @@ import { FaYoutube } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0c442c] text-white pt-16 pb-8">
-      <div className="container mx-auto px-4 md:px-6">
+    <footer className="bg-gray text-white pt-16 pb-8">
+      <div className="container-home">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <div className="flex items-center space-x-2 mb-4">

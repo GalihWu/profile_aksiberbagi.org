@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { BiChevronRight } from 'react-icons/bi';
-import { FaRegCircleCheck } from 'react-icons/fa6';
 
 const Hero = () => {
   const floatingVariants = {
@@ -40,7 +39,10 @@ const Hero = () => {
   };
 
   return (
-    <section id="beranda" className="pt-32 pb-24 relative overflow-hidden">
+    <section
+      id="beranda"
+      className="pt-20 md:pt-32 pb-24 relative overflow-hidden"
+    >
       <div className="absolute inset-0 opacity-10"></div>
       <div className="container mx-auto px-4 md:px-6 relative">
         <motion.div
@@ -54,44 +56,45 @@ const Hero = () => {
             variants={fadeInUp}
           >
             <motion.div
-              className="inline-block px-4 py-2 bg-[#0c442c]/10 text-[#0c442c] rounded-full text-sm font-medium mb-4"
+              className="inline-block px-4 py-2 bg-tosca-100 text-gray rounded-full text-sm font-medium mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              Selamat Datang di Pondok Pesantren Modern
+              Platform Donasi Online Terpercaya
             </motion.div>
 
             <motion.h1
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight"
               variants={fadeInUp}
             >
-              <span className="text-[#61876b]">Membentuk Generasi</span> Qurani
-              yang Berakhlak Mulia
+              Bersama Wujudkan Kebaikan Melalui{' '}
+              <span className="text-tosca-500"> Aksiberbagi</span>
             </motion.h1>
 
-            <motion.p className="text-lg" variants={fadeInUp}>
-              Pondok Pesantren Al-Filaha menggabungkan pendidikan Islam
-              tradisional dengan kurikulum modern untuk mempersiapkan santri
-              menghadapi tantangan global.
+            <motion.p className="text-lg md:text-xl" variants={fadeInUp}>
+              Dengan semangat berbagi dan kepedulian yang tinggi, kami
+              menghubungkan para donatur dengan berbagai proyek sosial yang
+              membutuhkan bantuan.
             </motion.p>
 
             <motion.div
               className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start"
               variants={fadeInUp}
             >
-              <motion.button
-                className="bg-[#61876b] hover:bg-[#0c442c] text-white flex space-x-3 px-6 py-2 items-center justify-center rounded-xl cursor-pointer "
+              <motion.a
+                className="bg-tosca-500 hover:bg-[#0c442c] font-medium text-white flex space-x-3 px-6 py-2 items-center justify-center rounded-xl cursor-pointer "
                 variants={buttonHover}
                 whileHover="hover"
                 whileTap="tap"
+                href="https://donasi.aksiberbagi.org/"
               >
-                Daftar Sekarang
+                Donasi Sekarang
                 <BiChevronRight className="ml-2 h-6 w-6" />
-              </motion.button>
+              </motion.a>
 
               <motion.button
-                className="border-[#61876b] text-[#61876b] hover:bg-pesantren-50 border px-6 py-2 rounded-xl cursor-pointers"
+                className="border-[#61876b] text-[#61876b] font-medium border px-6 py-2 rounded-xl cursor-pointers"
                 variants={buttonHover}
                 whileHover="hover"
                 whileTap="tap"
@@ -125,16 +128,8 @@ const Hero = () => {
               initial="initial"
               animate="animate"
             >
-              <div className="flex items-center space-x-3">
-                <div>
-                  <FaRegCircleCheck size={24} className="text-[#61876b} " />
-                </div>
-                <div>
-                  <h3 className="font-semibold">Pendidikan Terintegrasi</h3>
-                  <p className="text-sm">
-                    Menggabungkan ilmu agama dan sains modern
-                  </p>
-                </div>
+              <div className="flex flex-col items-center space-x-3">
+                <h3 className="text-xl font-semibold ">Slogan atau yng lain</h3>
               </div>
             </motion.div>
           </motion.div>

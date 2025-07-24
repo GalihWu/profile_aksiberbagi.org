@@ -8,3 +8,56 @@
 html {
   scroll-behavior: smooth;
 }
+
+:root {
+  --tosca-500 : #19B697;
+  --tosca-200: #75D3C1;
+  --tosca-100: #DDF5F3;
+  --cyan-primary: #15BBDA;
+  --cyan-200: #73D6E9;
+  --gray: #4C4C4C;
+}
+
+.bg-tosca-500 {
+  background-color: var(--tosca-500);
+}
+
+.bg-tosca-200 {
+  background-color: var(--tosca-200)
+}
+
+.bg-tosca-100 {
+  background-color: var(--tosca-100);
+}
+
+.bg-gray {
+  background-color: var(--gray);
+}
+
+.bg-cyan-200 {
+  background-color: var(--cyan-200);
+}
+
+.bg-gradient-tosca {
+background: linear-gradient(to top, 
+var(--tosca-200) 10%, 
+var(--tosca-100) 60%),
+var(--tosca-500) 10%; 
+}
+
+
+.text-tosca-500 {
+  color: var(--tosca-500)
+}
+
+.text-tosca-200 {
+  color: var(--tosca-200);
+}
+
+.text-tosca-100{
+  color: var(--tosca-100);
+}
+
+.text-gray {
+  color: var(--gray);
+}
