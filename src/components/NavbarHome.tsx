@@ -7,36 +7,95 @@ import {
   MdOutlineExpandLess,
 } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
+
+interface NavLink {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  submenu?: Array<{ name: string; href: string }>;
+}
+
+// Animation variants
+
+const navItemVariants: Variants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  }),
+};
+
+const mobileMenuVariants: Variants = {
+  hidden: { opacity: 0, height: 0 },
+  visible: {
+    opacity: 1,
+    height: 'auto',
+    transition: {
+      duration: 0.3,
+      ease: 'easeInOut',
+    },
+  },
+  exit: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      duration: 0.2,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+const mobileItemVariants: Variants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.3,
+    },
+  }),
+};
+
+const submenuVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      duration: 0.2,
+      ease: 'easeInOut',
+    },
+  },
+  visible: {
+    opacity: 1,
+    height: 'auto',
+    transition: {
+      duration: 0.3,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+const submenuItemVariants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.05,
+      duration: 0.2,
+    },
+  }),
+};
 
 const NavbarHome = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const toggleSubmenu = (menuName: string) => {
-    setActiveSubmenu(activeSubmenu === menuName ? null : menuName);
-  };
-
-  const navLinks = [
+  const navLinks: NavLink[] = [
     {
       name: 'Beranda',
       href: '#beranda',
@@ -73,81 +132,30 @@ const NavbarHome = () => {
     },
   ];
 
-  // Animation variants
-  const navItemVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-        ease: 'easeOut',
-      },
-    }),
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const mobileMenuVariants = {
-    hidden: { opacity: 0, height: 0 },
-    visible: {
-      opacity: 1,
-      height: 'auto',
-      transition: {
-        duration: 0.3,
-        ease: 'easeInOut',
-      },
-    },
-    exit: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.2,
-        ease: 'easeInOut',
-      },
-    },
-  };
-
-  const mobileItemVariants = {
-    hidden: { opacity: 0, x: -10 },
-    visible: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.3,
-      },
-    }),
-  };
-
-  const submenuVariants = {
-    hidden: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.2,
-        ease: 'easeInOut',
-      },
-    },
-    visible: {
-      opacity: 1,
-      height: 'auto',
-      transition: {
-        duration: 0.3,
-        ease: 'easeInOut',
-      },
-    },
-  };
-
-  const submenuItemVariants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.05,
-        duration: 0.2,
-      },
-    }),
+  const toggleSubmenu = (menuName: string) => {
+    setActiveSubmenu(activeSubmenu === menuName ? null : menuName);
   };
 
   return (

@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { BiChevronRight } from 'react-icons/bi';
 
 const Hero = () => {
-  const floatingVariants = {
+  const floatingVariants: Variants = {
     initial: { y: 0 },
     animate: {
       y: [-8, 8, -8],
@@ -14,7 +14,7 @@ const Hero = () => {
     },
   };
 
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -23,7 +23,7 @@ const Hero = () => {
     },
   };
 
-  const staggerContainer = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -33,7 +33,7 @@ const Hero = () => {
     },
   };
 
-  const buttonHover = {
+  const buttonHover: Variants = {
     hover: { scale: 1.03 },
     tap: { scale: 0.98 },
   };
