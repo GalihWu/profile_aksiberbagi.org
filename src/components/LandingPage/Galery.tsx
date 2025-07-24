@@ -1,10 +1,10 @@
-import React from 'react';
+import { useState } from 'react';
 import { BiChevronLeft, BiChevronRight, BiX } from 'react-icons/bi';
 
 const Gallery = () => {
-  const [activeImg, setActiveImg] = React.useState('');
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [isAnimating, setIsAnimating] = React.useState(false);
+  const [activeImg, setActiveImg] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const images = [
     'https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
