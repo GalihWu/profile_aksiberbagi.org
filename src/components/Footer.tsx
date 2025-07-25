@@ -102,7 +102,9 @@ const Footer = () => {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="text-gray-400">alfilaha@gmail.com</span>
+                <span className="text-gray-400">
+                  aksiberbagiOfficial@gmail.com
+                </span>
               </li>
             </ul>
           </div>
@@ -111,8 +113,8 @@ const Footer = () => {
         <div className="border-t border-[#0c442c] mt-10 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm">
-              &copy; {new Date().getFullYear()} Pondok Pesantren alfilaha. All
-              rights reserved.
+              &copy; {new Date().getFullYear()} Aksiberbagi. All rights
+              reserved.
             </p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <a

@@ -129,7 +129,7 @@ const Hero = () => {
               animate="animate"
             >
               <div className="flex flex-col items-center space-x-3">
-                <h3 className="text-xl font-semibold ">Slogan atau yng lain</h3>
+                <h3 className="text-xl font-semibold ">#SahabatBerbagi</h3>
               </div>
             </motion.div>
           </motion.div>
