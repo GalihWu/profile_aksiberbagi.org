@@ -1,18 +1,12 @@
 import { useState, useEffect } from 'react';
 import { IoClose, IoMenuSharp } from 'react-icons/io5';
-import { GoHome } from 'react-icons/go';
-import {
-  MdOutlineInsertPhoto,
-  MdOutlineExpandMore,
-  MdOutlineExpandLess,
-} from 'react-icons/md';
+import { MdOutlineExpandMore, MdOutlineExpandLess } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 
 interface NavLink {
   name: string;
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
   submenu?: Array<{ name: string; href: string }>;
 }
 
@@ -99,26 +93,18 @@ const NavbarHome = () => {
     {
       name: 'Beranda',
       href: '#beranda',
-      icon: GoHome,
     },
     {
       name: 'Tentang Kami',
       href: '#tentang',
-      icon: MdOutlineInsertPhoto,
     },
     {
       name: 'Program',
       href: '#program',
-      icon: MdOutlineInsertPhoto,
-      submenu: [
-        { name: 'Program Unggulan', href: '#program-unggulan' },
-        { name: 'Program Rutin', href: '#program-rutin' },
-      ],
     },
     {
       name: 'Artikel',
       href: '#artikel',
-      icon: MdOutlineInsertPhoto,
       submenu: [
         { name: 'Berita', href: '#berita' },
         { name: 'Kegiatan', href: '#kegiatan' },
@@ -128,7 +114,6 @@ const NavbarHome = () => {
     {
       name: 'Kontak',
       href: '#kontak',
-      icon: MdOutlineInsertPhoto,
     },
   ];
 
@@ -286,7 +271,6 @@ const NavbarHome = () => {
                       className="flex items-center space-x-2"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <link.icon className="h-5 w-5 text-[#19B697]" />
                       <span>{link.name}</span>
                     </a>
                     {link.submenu && (

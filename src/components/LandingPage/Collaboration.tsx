@@ -1,6 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 
+import { motion } from 'framer-motion';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
@@ -9,7 +11,13 @@ const Collaboration = () => {
   return (
     <section id="collab" className="section-home">
       <div className="container-home ">
-        <div className="text-center max-w-3xl mb-12 md:mb-16 mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mb-12 md:mb-16 mx-auto"
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
             Mitra <span className="text-tosca-500">Aksiberbagi</span>
           </h2>
@@ -18,7 +26,7 @@ const Collaboration = () => {
             masyarakat dalam menyalurkan program kebaikan ke seluruh Nusantara
             dan belahan dunia lainnya.
           </p>
-        </div>
+        </motion.div>
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={30}

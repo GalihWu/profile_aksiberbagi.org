@@ -3,7 +3,6 @@ import { FaDonate, FaHandsHelping } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const Achievements = () => {
-  // Data pencapaian untuk memudahkan mapping
   const achievements = [
     {
       icon: <FaDonate className="text-tosca-500 text-4xl md:text-5xl" />,
@@ -33,7 +32,6 @@ const Achievements = () => {
     },
   ];
 
-  // Animasi untuk setiap item
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
@@ -83,7 +81,7 @@ const Achievements = () => {
               initial="hidden"
               whileInView="visible"
               variants={itemVariants}
-              viewport={{ once: true, margin: '-50px' }}
+              viewport={{ once: false, margin: '-50px' }}
               whileHover={{ y: -5, scale: 1.02 }}
             >
               <div className="mb-4 p-3 bg-tosca-50 rounded-full">

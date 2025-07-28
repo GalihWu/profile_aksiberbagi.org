@@ -42,7 +42,8 @@ const Programs = () => {
       setError(null);
 
       try {
-        // Fetch programs and categories concurrently
+        const apiUrl = import.meta.env.VITE_API_URL;
+        console.log('API URL:', apiUrl);
         const [programsResponse, categoriesResponse] = await Promise.all([
           axios.get(
             `https://admin.aksiberbagi.com/api/beranda/program-vertical`,
@@ -149,22 +150,11 @@ const Programs = () => {
           {/* filter */}
           <div className="mb-8 flex flex-col sm:flex-row justify-between gap-4">
             <div className="flex flex-wrap gap-2 md:gap-4">
-              <button
-                onClick={() => setActiveFilter('semua')}
-                className={`text-sm md:text-base font-medium border w-fit px-3 py-1 rounded-2xl flex items-center gap-2 transition-colors ${
-                  activeFilter === 'semua'
-                    ? 'bg-[#19B697] text-white border-[#19B697]'
-                    : 'border-gray-300 hover:border-[#19B697] hover:text-[#19B697]'
-                }`}
-              >
-                <MdAnchor className="text-xs md:text-sm" />
-                Semua Program
-              </button>
-              {categories.map((category) => (
+              {categories.slice(0, 4).map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setActiveFilter(category.name)}
-                  className={`text-sm md:text-base font-medium border w-fit px-3 py-1 rounded-2xl flex items-center gap-2 transition-colors ${
+                  className={`text-sm md:text-base font-medium border cursor-pointer w-fit px-3 py-1 rounded-2xl flex items-center gap-2 transition-colors ${
                     activeFilter === category.name
                       ? 'bg-[#19B697] text-white border-[#19B697]'
                       : 'border-gray-300 hover:border-[#19B697] hover:text-[#19B697]'
@@ -182,6 +172,17 @@ const Programs = () => {
                 </button>
               ))}
             </div>
+            <button
+              onClick={() => setActiveFilter('semua')}
+              className={`text-sm md:text-base font-medium border w-fit px-3 py-1 cursor-pointer rounded-2xl flex items-center gap-2 transition-colors ${
+                activeFilter === 'semua'
+                  ? 'bg-[#19B697] text-white border-[#19B697]'
+                  : 'border-gray-300 hover:border-[#19B697] hover:text-[#19B697]'
+              }`}
+            >
+              <MdAnchor className="text-xs md:text-sm" />
+              Tanpa Filter
+            </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -192,6 +193,7 @@ const Programs = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
+                  viewport={{ once: true }}
                   className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
                 >
                   <div className="h-48 overflow-hidden relative">
@@ -225,8 +227,8 @@ const Programs = () => {
                 </motion.div>
               ))
             ) : (
-              <div className="col-span-full text-center py-8 text-gray-500">
-                Tidak ada program yang tersedia
+              <div className="col-span-full text-center py-8 text-gray-500 font-semibold text-lg md:text-xl">
+                Tidak ada program yang ditemukan untuk kategori ini.
               </div>
             )}
           </div>

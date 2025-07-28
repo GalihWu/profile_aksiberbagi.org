@@ -22,7 +22,7 @@ const LandingPage = () => {
           height: 4,
           originX: 0,
           zIndex: 100,
-          backgroundColor: '#7aad42',
+          backgroundColor: '#15BBDA',
         }}
       ></motion.div>
       <div className="min-h-screen">
