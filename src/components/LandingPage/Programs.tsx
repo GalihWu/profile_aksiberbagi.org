@@ -45,7 +45,7 @@ const Programs = () => {
         // Fetch programs and categories concurrently
         const [programsResponse, categoriesResponse] = await Promise.all([
           axios.get(
-            `${process.env.NEXT_PUBLIC_API_URL}/beranda/program-vertical`,
+            `https://admin.aksiberbagi.com/api/beranda/program-vertical`,
             {
               headers: {
                 Accept: 'application/json',
@@ -54,7 +54,7 @@ const Programs = () => {
               signal,
             }
           ),
-          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/program-category`, {
+          axios.get(`https://admin.aksiberbagi.com/api/program-category`, {
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',

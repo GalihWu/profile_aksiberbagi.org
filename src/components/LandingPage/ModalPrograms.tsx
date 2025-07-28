@@ -34,7 +34,7 @@ const ModalPrograms = ({ linkProgram, closeModal }: ModalProgramsProps) => {
 
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/program/link/${link}`,
+          `https://admin.aksiberbagi.com/api/program/link/${link}`,
           {
             headers: {
               Accept: 'application/json',
